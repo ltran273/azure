@@ -11,7 +11,6 @@ import {
 } from '../containers/pages';
 import ProtectedDashboard from '../containers/protected/ProtectedDashboard';
 import ProtectedUser from '../containers/protected/ProtectedUser';
-import ProtectedHome from '../containers/protected/ProtectedHome';
 
 const RenderRoutes = ({routes, auth, location}) => {
   if (!routes) {
@@ -31,7 +30,6 @@ const RenderRoutes = ({routes, auth, location}) => {
         <Route path="/home" component={Home}/>
         <Route path="/dashboard" component={ProtectedDashboard}/>
         <Route path="/user" component={ProtectedUser}/>
-        <Route path="/protectedHome" component={ProtectedHome} />
         <Redirect from='' to='/home'/>
     </ConnectedSwitch>
   );

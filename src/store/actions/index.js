@@ -4,12 +4,7 @@ import {
 } from '../../adalConfig';
 import axios from 'axios';
 
-import { Cookies } from 'react-cookie';
-
 export const API_URL = "http://localhost:8080/api/";
-
-const cookies = new Cookies();
-console.log(`JSESSIONID=${cookies.get('JSESSIONID')}; XSRF-TOKEN=${cookies.get('XSRF-TOKEN')}`);
 
 export const getTodoList = () => {
     return (dispatch) => {

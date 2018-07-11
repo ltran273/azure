@@ -32,8 +32,17 @@ class Header extends React.Component {
                         </ul>
                         <ul className="nav navbar-nav navbar-right">
                             {
-                                userInfo ? <li><a className="btn btn-link" onClick={() => authContext.logOut()}>Logout</a></li>
-                                    : <li><a className="btn btn-link" onClick={() => {authContext.login(); authContext.clearCache();}}>Login</a></li>
+                                userInfo 
+                                    ? <li><a className="btn btn-link" onClick={() => authContext.logOut()}>Logout</a></li>
+                                    : <li>
+                                        <a className="btn btn-link" 
+                                            onClick={() => {
+                                                localStorage.setItem('currentPage', window.location.href);
+                                                authContext.clearCache();
+                                                authContext.login(); 
+                                            }}
+                                        >Login
+                                        </a></li>
                             }
                         </ul>
                     </div>

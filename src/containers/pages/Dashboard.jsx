@@ -5,6 +5,7 @@ import * as Actions from '../../store/actions';
 
 import { authContext } from '../../adalConfig';
 import { TodoElm } from '../../components/elements';
+import { withRouter } from 'react-router-dom';
 
 class Dashboard extends Component {
     state = {
@@ -12,7 +13,12 @@ class Dashboard extends Component {
     }
 
     componentDidMount = () => {
-        this.props.actions.getTodoList();
+        let currentPage = localStorage.getItem('currentPage');
+        if(!currentPage || (currentPage && currentPage === window.location.href)) {
+            this.props.actions.getTodoList();
+        } else {
+            this.props.history.push(currentPage);
+        }
     }
 
     handleAddChange = (event) => {
@@ -61,8 +67,8 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Actions, dispatch)
 })
 
-export default connect(
+export default withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-)(Dashboard);
+)(Dashboard));
 

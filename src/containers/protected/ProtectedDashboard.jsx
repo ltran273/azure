@@ -4,6 +4,10 @@ import { withAdalLoginApi,  authContext} from '../../adalConfig';
 import { MasterLayout } from '../../components/layouts';
 
 class ProtectedDashboard extends Component {
+    componentDidMount() {
+        localStorage.setItem('currentPage', window.location.href);
+    }
+
     render() {
         const LayDashboard = withAdalLoginApi(Dashboard, () => <Loading />, (error) => <ErrorPage error={error}/>);
         console.log(authContext);
@@ -15,5 +19,4 @@ class ProtectedDashboard extends Component {
     }
 }
 
-export default ProtectedDashboard
-
+export default ProtectedDashboard;
