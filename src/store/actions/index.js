@@ -6,12 +6,14 @@ import axios from 'axios';
 
 import { Cookies } from 'react-cookie';
 
+export const API_URL = "http://localhost:8080/api/";
+
 const cookies = new Cookies();
 console.log(`JSESSIONID=${cookies.get('JSESSIONID')}; XSRF-TOKEN=${cookies.get('XSRF-TOKEN')}`);
 
 export const getTodoList = () => {
     return (dispatch) => {
-        adalApiFetch(axios, 'http://localhost:8080/api/todolist')
+        adalApiFetch(axios, `${API_URL}todolist`)
             .then((response) => {
                 dispatch({
                     type: types.GET_TODO_LIST,
@@ -26,7 +28,7 @@ export const getTodoList = () => {
 
 export const getTodoDetail = (id) => {
     return (dispatch) => {
-        adalApiFetch(axios, `http://localhost:8080/api/todolist/${id}`)
+        adalApiFetch(axios, `${API_URL}todolist/${id}`)
             .then((response) => {
                 dispatch({
                     type: types.GET_TODO_DETAIL,
@@ -41,7 +43,7 @@ export const getTodoDetail = (id) => {
 
 export const addTodoList = (data) => {
     return (dispatch) => {
-        adalApiFetch(axios, 'http://localhost:8080/api/todolist', {
+        adalApiFetch(axios, `${API_URL}todolist`, {
                 method: 'POST',
                 data: data,
                 withCredentials: true
@@ -68,7 +70,7 @@ export const addTodoList = (data) => {
 
 export const editTodoList = (data) => {
     return (dispatch) => {
-        adalApiFetch(axios, 'http://localhost:8080/api/todolist', {
+        adalApiFetch(axios, `${API_URL}todolist`, {
                 method: 'PUT',
                 data: data
             })
@@ -95,7 +97,7 @@ export const editTodoList = (data) => {
 
 export const deleteTodoList = (id) => {
     return (dispatch) => {
-        adalApiFetch(axios, `http://localhost:8080/api/todolist/${id}`, {
+        adalApiFetch(axios, `${API_URL}todolist/${id}`, {
                 method: 'DELETE'
             })
             .then((response) => {
